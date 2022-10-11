@@ -25,11 +25,16 @@ const LetrasProvider = ({children}) => {
         try {
             setCargando(true)
             const {data} = await axios(url, options);
-            setLetra(data.lyrics);
-            setAlerta('')
+            console.log(data)
+            if(data.success){
+              setLetra(data.lyrics);
+              setAlerta('')
+            } else {
+              setAlerta('Canción no encontrada')
+            }
+          
           } catch (error) {
             console.error(error)
-            setAlerta('Canción no encontrada')
           }
 
         setCargando(false)
